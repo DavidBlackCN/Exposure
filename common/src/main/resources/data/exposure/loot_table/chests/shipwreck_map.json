@@ -7,9 +7,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:aged_photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -23,9 +23,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:aged_photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -37,12 +37,10 @@
           ]
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.1
-        }
-      ]
+      "condition": {
+        "type": "minecraft:random_chance",
+        "chance": 0.1
+      }
     },
     {
       "rolls": 1,
@@ -50,9 +48,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:aged_photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -66,9 +64,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:aged_photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -80,12 +78,10 @@
           ]
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.1
-        }
-      ]
+      "condition": {
+        "type": "minecraft:random_chance",
+        "chance": 0.1
+      }
     },
     {
       "rolls": 1,
@@ -93,9 +89,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:black_and_white_film",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:film_frame_size": 56,
                 "exposure:film_frames": [
@@ -188,9 +184,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:black_and_white_film",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:film_frame_size": 56,
                 "exposure:film_frames": [
@@ -308,12 +304,10 @@
           ]
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.15
-        }
-      ]
+      "condition": {
+        "type": "minecraft:random_chance",
+        "chance": 0.15
+      }
     },
     {
       "rolls": 2,
@@ -331,12 +325,10 @@
           "name": "minecraft:blue_stained_glass_pane"
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.3
-        }
-      ]
+      "condition": {
+        "type": "minecraft:random_chance",
+        "chance": 0.3
+      }
     }
   ]
 }

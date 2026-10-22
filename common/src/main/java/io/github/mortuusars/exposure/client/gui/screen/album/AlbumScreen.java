@@ -423,7 +423,7 @@ public class AlbumScreen extends AbstractContainerScreen<AlbumMenu> {
         if (isInAddingMode())
             return super.mouseDragged(event, dragX, dragY);
         else
-            return this.getFocused() != null && this.isDragging() && button == 0
+            return this.getFocused() != null && this.isDragging() && button == InputConstants.MOUSE_BUTTON_LEFT
                     && this.getFocused().mouseDragged(event, dragX, dragY);
     }
 
@@ -501,7 +501,6 @@ public class AlbumScreen extends AbstractContainerScreen<AlbumMenu> {
     @Override
     public boolean keyPressed(net.minecraft.client.input.KeyEvent event) {
         int keyCode = event.key();
-        int scanCode = event.scancode();
         int modifiers = event.modifiers();
         if (keyCode == InputConstants.KEY_TAB)
             return super.keyPressed(event);
@@ -530,7 +529,6 @@ public class AlbumScreen extends AbstractContainerScreen<AlbumMenu> {
     @Override
     public boolean keyReleased(net.minecraft.client.input.KeyEvent event) {
         int keyCode = event.key();
-        int scanCode = event.scancode();
         int modifiers = event.modifiers();
         for (Page page : pages) {
             if (page.noteWidget.map(box -> box, block -> block).isFocused())

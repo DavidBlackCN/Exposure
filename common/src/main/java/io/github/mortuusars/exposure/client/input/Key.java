@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 @FunctionalInterface
 public interface Key {
-    boolean matches(int keyCode, int scanCode, int action, int modifiers);
+    boolean matches(int keyCode, int shortcutKey, int action, int modifiers);
 
     default Key or(Key anotherKey) {
         return (key, code, action, mods) -> this.matches(key, code, action, mods) || anotherKey.matches(key, code, action, mods);
@@ -30,8 +30,8 @@ public interface Key {
     }
 
     static boolean actionMatches(int definedAction, int action) {
-        if (definedAction == 1 || definedAction == 2) {
-            return action == 1 || action == 2;
+        if (definedAction == InputConstants.PRESS || definedAction == InputConstants.REPEAT) {
+            return action == InputConstants.PRESS || action == InputConstants.REPEAT;
         }
         return definedAction == action;
     }
@@ -48,12 +48,12 @@ public interface Key {
 
     static Key press(int modifiers, int keyCode) {
         return (key, code, action, mods) -> Key.actionMatches(InputConstants.PRESS, action)
-                && keyCode == key && mods == modifiers;
+                && keyCode == key && Modifier.matches(modifiers, mods);
     }
 
     static Key release(int modifiers, int keyCode) {
         return (key, code, action, mods) -> Key.actionMatches(InputConstants.RELEASE, action)
-                && keyCode == key && mods == modifiers;
+                && keyCode == key && Modifier.matches(modifiers, mods);
     }
 
     static Key press(KeyMapping keyMapping) {
@@ -68,8 +68,8 @@ public interface Key {
 
     record KeyWithPredicate(Key key, Supplier<Boolean> predicate) implements Key {
         @Override
-        public boolean matches(int keyCode, int scanCode, int action, int modifiers) {
-            return key.matches(keyCode, scanCode, action, modifiers) && predicate.get();
+        public boolean matches(int keyCode, int shortcutKey, int action, int modifiers) {
+            return key.matches(keyCode, shortcutKey, action, modifiers) && predicate.get();
         }
     }
 }

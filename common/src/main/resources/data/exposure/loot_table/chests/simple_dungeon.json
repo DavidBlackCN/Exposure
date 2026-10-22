@@ -7,9 +7,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -21,12 +21,10 @@
           ]
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.1
-        }
-      ]
+      "condition": {
+        "type": "minecraft:random_chance",
+        "chance": 0.1
+      }
     }
   ]
 }

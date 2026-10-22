@@ -35,7 +35,7 @@ public class Bugger {
     private static int zoom;
     private static int scroll;
 
-    public static boolean onKeyPress(int key, int scanCode, int modifiers) {
+    public static boolean onKeyPress(int key, int shortcutKey, int modifiers) {
         if (key == InputConstants.KEY_UP) up();
         if (key == InputConstants.KEY_DOWN) down();
         if (key == InputConstants.KEY_INSERT) zoom = 0;
@@ -47,7 +47,7 @@ public class Bugger {
         return false;
     }
 
-    public static boolean onKeyRepeat(int key, int scanCode, int modifiers) {
+    public static boolean onKeyRepeat(int key, int shortcutKey, int modifiers) {
         if (key == InputConstants.KEY_UP) up();
         if (key == InputConstants.KEY_DOWN) down();
         if (key == InputConstants.KEY_LEFT) page = Mth.clamp(page - 1, -1, 1);
@@ -55,7 +55,7 @@ public class Bugger {
         return false;
     }
 
-    public static boolean onKeyRelease(int key, int scanCode, int modifiers) {
+    public static boolean onKeyRelease(int key, int shortcutKey, int modifiers) {
         return false;
     }
 

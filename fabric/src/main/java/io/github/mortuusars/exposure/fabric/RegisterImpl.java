@@ -36,7 +36,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -143,8 +142,8 @@ public class RegisterImpl {
         return () -> argumentTypeInfo;
     }
 
-    public static <T extends FeatureConfiguration> Supplier<Feature<?>> worldGenFeature(String name, Supplier<Feature<T>> featureSupplier) {
-        Feature<T> feature = Registry.register(BuiltInRegistries.FEATURE, name, featureSupplier.get());
+    public static <T extends Feature> Supplier<MapCodec<T>> worldGenFeature(String name, Supplier<MapCodec<T>> featureSupplier) {
+        MapCodec<T> feature = Registry.register(BuiltInRegistries.FEATURE_TYPE, Exposure.resource(name), featureSupplier.get());
         return () -> feature;
     }
 

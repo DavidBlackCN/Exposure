@@ -1,16 +1,17 @@
 package io.github.mortuusars.exposure.mixin.compat.easy_anvils;
 
-import fuzs.easyanvils.world.inventory.ModAnvilMenu;
 import io.github.mortuusars.exposure.Config;
 import io.github.mortuusars.exposure.world.item.BrokenInterplanarProjectorItem;
 import io.github.mortuusars.exposure.world.item.InterplanarProjectorItem;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AnvilMenu;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
-@Mixin(ModAnvilMenu.class)
+@Pseudo
+@Mixin(targets = "fuzs.easyanvils.common.world.inventory.ModAnvilMenu", remap = false)
 public abstract class ModAnvilMenuMixin extends AnvilMenu {
     public ModAnvilMenuMixin(int containerId, Inventory playerInventory) {
         super(containerId, playerInventory);

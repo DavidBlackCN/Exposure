@@ -1,7 +1,6 @@
 package io.github.mortuusars.exposure.world.inventory;
 
 import com.google.common.base.Preconditions;
-import com.mojang.blaze3d.platform.InputConstants;
 import io.github.mortuusars.exposure.Exposure;
 import io.github.mortuusars.exposure.util.PagingDirection;
 import io.github.mortuusars.exposure.world.inventory.slot.AlbumPhotographSlot;
@@ -19,6 +18,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.util.Prediction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -54,7 +54,7 @@ public class AlbumMenu extends AbstractContainerMenu {
         put(CANCEL_ADDING_PHOTO_BUTTON, p -> {
             sideBeingAddedTo = null;
             if (!getCarried().isEmpty()) {
-                p.getInventory().placeItemBackInInventory(getCarried());
+                p.getInventory().placeItemBackInInventory(getCarried(), Prediction.PREDICTED);
                 setCarried(ItemStack.EMPTY);
             }
             updatePlayerInventorySlots();
@@ -289,7 +289,7 @@ public class AlbumMenu extends AbstractContainerMenu {
         else {
             ItemStack stack = slot.getItem();
             if (!player.getInventory().add(stack))
-                player.drop(stack, false);
+                player.drop(stack, false, Prediction.PREDICTED);
 
             slot.set(ItemStack.EMPTY);
         }
@@ -309,7 +309,8 @@ public class AlbumMenu extends AbstractContainerMenu {
         Slot slot = slots.get(slotId);
         ItemStack stack = slot.getItem();
 
-        if (button == InputConstants.MOUSE_BUTTON_LEFT
+        // Container click buttons stay 0/1, independently of SDL mouse buttons.
+        if (button == 0
                 && slot instanceof AlbumPlayerInventorySlot
                 && stack.getItem() instanceof PhotographItem
                 && getCarried().isEmpty()) {

@@ -23,10 +23,10 @@ public class KeyboardHandler {
         openCameraControlsKey = registerFunction.apply(keyMapping);
     }
 
-    public static boolean handleKeyPress(long windowId, int key, int scanCode, int action, int modifiers) {
+    public static boolean handleKeyPress(long windowId, int key, int shortcutKey, int action, int modifiers) {
         return Minecrft.get().player != null
                 && CameraClient.viewfinder() != null
-                && CameraClient.viewfinder().keyPressed(key, scanCode, action, modifiers);
+                && CameraClient.viewfinder().keyPressed(key, shortcutKey, action, modifiers);
     }
 
     public static KeyMapping getCameraControlsKey() {

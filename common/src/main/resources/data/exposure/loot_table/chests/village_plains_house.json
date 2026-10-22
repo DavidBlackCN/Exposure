@@ -7,9 +7,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:aged_photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -23,9 +23,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:aged_photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -37,12 +37,10 @@
           ]
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.15
-        }
-      ]
+      "condition": {
+        "type": "minecraft:random_chance",
+        "chance": 0.15
+      }
     },
     {
       "rolls": 1,
@@ -50,9 +48,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:aged_photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -66,9 +64,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:aged_photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -82,9 +80,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:aged_photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -98,9 +96,9 @@
         {
           "type": "minecraft:item",
           "name": "exposure:aged_photograph",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_components",
+              "type": "minecraft:set_components",
               "components": {
                 "exposure:photograph_frame": {
                   "identifier": {
@@ -112,12 +110,10 @@
           ]
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.3
-        }
-      ]
+      "condition": {
+        "type": "minecraft:random_chance",
+        "chance": 0.3
+      }
     }
   ]
 }

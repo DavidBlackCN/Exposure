@@ -63,13 +63,13 @@ public class CameraStandEntityRenderer
         poseStack.pushPose();
         if (state.hurtTime > 0.0F) {
             float rotation = Mth.sin(state.hurtTime) * state.hurtTime * state.damage / 10.0F * state.hurtDirection;
-            poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
-            poseStack.mulPose(Axis.XP.rotationDegrees(rotation));
+            poseStack.rotate(Axis.YP.rotationDegrees(rotation));
+            poseStack.rotate(Axis.XP.rotationDegrees(rotation));
         }
 
         poseStack.pushPose();
         if (state.vehicleYRot != null) {
-            poseStack.mulPose(Axis.YP.rotationDegrees(-state.vehicleYRot + 45));
+            poseStack.rotate(Axis.YP.rotationDegrees(-state.vehicleYRot + 45));
         }
         poseStack.translate(0, 0.5, 0);
         state.stand.submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, state.outlineColor);
@@ -78,11 +78,11 @@ public class CameraStandEntityRenderer
         poseStack.pushPose();
         poseStack.translate(0, 1.125, 0);
         poseStack.scale(MOUNT_SCALE, MOUNT_SCALE, MOUNT_SCALE);
-        poseStack.mulPose(Axis.YP.rotationDegrees(-state.yRot + 180));
-        poseStack.mulPose(Axis.XP.rotationDegrees(-state.xRot));
+        poseStack.rotate(Axis.YP.rotationDegrees(-state.yRot + 180));
+        poseStack.rotate(Axis.XP.rotationDegrees(-state.xRot));
         if (state.malfunctioned) {
-            poseStack.mulPose(Axis.ZP.rotationDegrees(-50));
-            poseStack.mulPose(Axis.XP.rotationDegrees(-10));
+            poseStack.rotate(Axis.ZP.rotationDegrees(-50));
+            poseStack.rotate(Axis.XP.rotationDegrees(-10));
         }
         poseStack.translate(0, 0.5, 0);
         state.mount.submit(poseStack, collector, state.lightCoords,
@@ -92,12 +92,12 @@ public class CameraStandEntityRenderer
         if (!state.camera.isEmpty()) {
             poseStack.pushPose();
             poseStack.translate(0, 1.125, 0);
-            poseStack.mulPose(Axis.YP.rotationDegrees(-state.yRot + 180));
-            poseStack.mulPose(Axis.XP.rotationDegrees(-state.xRot));
+            poseStack.rotate(Axis.YP.rotationDegrees(-state.yRot + 180));
+            poseStack.rotate(Axis.XP.rotationDegrees(-state.xRot));
             poseStack.translate(0, 0.125 * MOUNT_SCALE, 0);
             if (state.malfunctioned) {
-                poseStack.mulPose(Axis.ZP.rotationDegrees(-50));
-                poseStack.mulPose(Axis.XP.rotationDegrees(-15));
+                poseStack.rotate(Axis.ZP.rotationDegrees(-50));
+                poseStack.rotate(Axis.XP.rotationDegrees(-15));
             }
             poseStack.scale(state.cameraScale, state.cameraScale, state.cameraScale);
             poseStack.translate(0, 0.5, 0);

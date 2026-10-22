@@ -57,7 +57,7 @@ public class ClientGUI {
     private static void addRecipeTooltip(ItemStack stack, Item.TooltipContext tooltipContext,
                                          @NotNull Consumer<Component> tooltipComponents, @NotNull TooltipFlag isAdvanced,
                                          Predicate<CraftingRecipe> recipeFilter, String detailsKey) {
-        if (Minecraft.getInstance().level == null) {
+        if (Minecraft.getInstance().level == null || RecipeViewerSupport.hasReiRecipe(stack)) {
             return;
         }
 

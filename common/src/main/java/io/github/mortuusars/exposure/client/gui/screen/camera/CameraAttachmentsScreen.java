@@ -317,17 +317,16 @@ public class CameraAttachmentsScreen extends AbstractContainerScreen<AbstractCam
     @Override
     public boolean keyPressed(net.minecraft.client.input.KeyEvent event) {
         int keyCode = event.key();
-        int scanCode = event.scancode();
         int modifiers = event.modifiers();
         if (keyCode == InputConstants.KEY_F1) {
-            String url = "https://moddedmc.wiki/project/exposure";
+            java.net.URI url = java.net.URI.create("https://moddedmc.wiki/project/exposure");
             Minecrft.get().gui.setScreen(new ConfirmLinkScreen(confirmed -> {
                 if (confirmed) {
-                    Util.getPlatform().openUri(url);
+                    com.mojang.blaze3d.Blaze3D.openUri(url);
                 }
 
                 Minecrft.get().gui.setScreen(this);
-            }, "https://moddedmc.wiki/project/exposure", true));
+            }, url, true));
             return true;
         }
 

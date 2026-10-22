@@ -1,6 +1,13 @@
 {
   "pack": {
-    "pack_format": 48,
-    "description": "Exposure Example Resourcepack"
+    "description": "Exposure Example Resourcepack",
+    "min_format": [
+      97,
+      1
+    ],
+    "max_format": [
+      97,
+      1
+    ]
   }
 }

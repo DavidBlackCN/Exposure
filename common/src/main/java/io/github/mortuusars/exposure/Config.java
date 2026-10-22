@@ -310,6 +310,7 @@ public class Config {
 
         // INTEGRATION
         public static final ModConfigSpec.BooleanValue SHOW_JEI_INFORMATION;
+        public static final ModConfigSpec.BooleanValue SHOW_REI_INFORMATION;
         public static final ModConfigSpec.BooleanValue REAL_CAMERA_DISABLE_IN_VIEWFINDER;
 
         // IMAGE SAVING
@@ -329,7 +330,7 @@ public class Config {
 
                 RECIPE_TOOLTIPS_WITHOUT_JEI = builder
                         .comment("Tooltips for Developing Film Rolls and Copying Photographs will be shown on Film Rolls and Photographs respectively, describing the crafting recipe. ",
-                                "Only when JEI is not installed. (Only JEI shows these recipes, not REI or EMI)")
+                                "Only when JEI is not installed and REI has no matching recipe display.")
                         .define("recipe_tooltips_without_jei", true);
 
                 CAMERA_SHOW_TOOLTIP_DETAILS = builder
@@ -508,6 +509,9 @@ public class Config {
                 SHOW_JEI_INFORMATION = builder
                         .comment("Useful information about some items will be shown in JEI description category. Default: true")
                         .define("jei_information", true);
+                SHOW_REI_INFORMATION = builder
+                        .comment("Useful information about some items will be shown in REI's information category. Default: true")
+                        .define("rei_information", true);
                 REAL_CAMERA_DISABLE_IN_VIEWFINDER = builder
                         .comment("[Real Camera] Disable player model rendering when looking through viewfinder. Default: true")
                         .define("real_camera_disable_in_viewfinder", true);

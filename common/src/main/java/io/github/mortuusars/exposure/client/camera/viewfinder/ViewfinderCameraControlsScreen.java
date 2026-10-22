@@ -1,6 +1,7 @@
 package io.github.mortuusars.exposure.client.camera.viewfinder;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import org.lwjgl.sdl.SDLScancode;
 import io.github.mortuusars.exposure.Config;
 import io.github.mortuusars.exposure.Exposure;
 import io.github.mortuusars.exposure.client.gui.Widgets;
@@ -220,7 +221,7 @@ public class ViewfinderCameraControlsScreen extends Screen {
             if (keyMapping.key.getType() == InputConstants.Type.MOUSE) {
                 keyMapping.setDown(MouseHandler.isMouseButtonHeld(keyMapping.key.getValue()));
             } else {
-                keyMapping.setDown(InputConstants.isKeyDown(Minecraft.getInstance().getWindow(), keyMapping.key.getValue()));
+                keyMapping.setDown(InputConstants.isKeyDown(keyMapping.key.getValue()));
             }
         };
 
@@ -327,7 +328,6 @@ public class ViewfinderCameraControlsScreen extends Screen {
     @Override
     public boolean keyReleased(net.minecraft.client.input.KeyEvent event) {
         int keyCode = event.key();
-        int scanCode = event.scancode();
         int modifiers = event.modifiers();
         if (KeyboardHandler.getCameraControlsKey().matches(event)) {
             if (isToggleTimeReached())
@@ -346,14 +346,13 @@ public class ViewfinderCameraControlsScreen extends Screen {
     @Override
     public boolean keyPressed(net.minecraft.client.input.KeyEvent event) {
         int keyCode = event.key();
-        int scanCode = event.scancode();
         int modifiers = event.modifiers();
         if (super.keyPressed(event)) return true;
 
         if (keyCode == InputConstants.KEY_ADD || keyCode == InputConstants.KEY_EQUALS) {
             viewfinder.zoom().zoom(ZoomDirection.IN, true);
             return true;
-        } else if (keyCode == 333 /*KEY_SUBTRACT*/ || keyCode == InputConstants.KEY_MINUS) {
+        } else if (keyCode == SDLScancode.SDL_SCANCODE_KP_MINUS || keyCode == InputConstants.KEY_MINUS) {
             viewfinder.zoom().zoom(ZoomDirection.OUT, true);
             return true;
         }

@@ -1,6 +1,7 @@
 package io.github.mortuusars.exposure.client.camera.viewfinder;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import org.lwjgl.sdl.SDLScancode;
 import io.github.mortuusars.exposure.client.animation.Animation;
 import io.github.mortuusars.exposure.client.animation.EasingFunction;
 import io.github.mortuusars.exposure.client.util.Minecrft;
@@ -64,14 +65,14 @@ public class ViewfinderZoom {
         }
     }
 
-    public boolean keyPressed(int key, int scanCode, int action, int modifiers) {
+    public boolean keyPressed(int key, int shortcutKey, int action, int modifiers) {
         if (action == InputConstants.PRESS || action == InputConstants.REPEAT) {
             if (key == InputConstants.KEY_ADD || key == InputConstants.KEY_EQUALS) {
                 zoom(ZoomDirection.IN, Minecrft.get().hasShiftDown());
                 return true;
             }
 
-            if (key == 333 /*KEY_SUBTRACT*/ || key == InputConstants.KEY_MINUS) {
+            if (key == SDLScancode.SDL_SCANCODE_KP_MINUS || key == InputConstants.KEY_MINUS) {
                 zoom(ZoomDirection.OUT, Minecrft.get().hasShiftDown());
                 return true;
             }

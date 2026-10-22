@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "exposure:photograph_copying_black_and_white"
+        "recipes": ["exposure:photograph_copying_black_and_white"]
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "exposure:copying_black_and_white_photograph"
+      "exposure:photograph_copying_black_and_white"
     ]
   },
   "sends_telemetry_event": true

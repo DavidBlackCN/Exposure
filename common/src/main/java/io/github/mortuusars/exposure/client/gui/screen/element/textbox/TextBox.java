@@ -59,6 +59,12 @@ public class TextBox extends AbstractWidget {
         ++frameTick;
     }
 
+    @Override
+    public void setFocused(boolean focused) {
+        super.setFocused(focused);
+        Minecraft.getInstance().onTextInputFocusChange(this, focused);
+    }
+
     public Font getFont() {
         return font;
     }
@@ -157,6 +163,9 @@ public class TextBox extends AbstractWidget {
     }
 
     protected void renderCursor(GuiGraphicsExtractor guiGraphics, Pos2i cursorPos, boolean isEndOfText) {
+        Pos2i inputPos = convertLocalToScreen(cursorPos);
+        Minecraft.getInstance().textInputManager().setTextInputArea(
+                inputPos.x, inputPos.y, inputPos.x + 1, inputPos.y + font.lineHeight);
         if (this.frameTick / 6 % 2 == 0) {
             cursorPos = convertLocalToScreen(cursorPos);
             if (isEndOfText)
@@ -183,7 +192,6 @@ public class TextBox extends AbstractWidget {
     @Override
     public boolean keyPressed(KeyEvent event) {
         int keyCode = event.key();
-        int scanCode = event.scancode();
         int modifiers = event.modifiers();
         if (!isFocused())
             return false;
@@ -238,7 +246,7 @@ public class TextBox extends AbstractWidget {
         double mouseX = event.x();
         double mouseY = event.y();
         int button = event.button();
-        if (isHovered && visible && isActive() && button == 0) {
+        if (isHovered && visible && isActive() && button == InputConstants.MOUSE_BUTTON_LEFT) {
             long currentTime = Util.getMillis();
             DisplayCache displayCache = getDisplayCache();
             int index = displayCache.getIndexAtPosition(font, convertScreenToLocal(new Pos2i((int) mouseX, (int) mouseY)));
@@ -269,7 +277,7 @@ public class TextBox extends AbstractWidget {
         double mouseX = event.x();
         double mouseY = event.y();
         int button = event.button();
-        if (button == 0) {
+        if (button == InputConstants.MOUSE_BUTTON_LEFT) {
             DisplayCache displayCache = this.getDisplayCache();
             int index = displayCache.getIndexAtPosition(this.font, this.convertScreenToLocal(new Pos2i((int) mouseX, (int) mouseY)));
             this.textFieldHelper.setCursorPos(index, true);

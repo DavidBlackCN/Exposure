@@ -120,9 +120,8 @@ public class ItemRenameScreen extends AbstractContainerScreen<ItemRenameMenu> {
     @Override
     public boolean keyPressed(net.minecraft.client.input.KeyEvent event) {
         int keyCode = event.key();
-        int scanCode = event.scancode();
         int modifiers = event.modifiers();
-        if (keyCode == 256) {
+        if (keyCode == InputConstants.KEY_ESCAPE) {
             onClose();
         }
 

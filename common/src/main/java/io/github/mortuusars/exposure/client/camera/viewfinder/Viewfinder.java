@@ -142,15 +142,15 @@ public class Viewfinder {
         }
     }
 
-    public boolean keyPressed(int key, int scanCode, int action, int modifiers) {
+    public boolean keyPressed(int key, int shortcutKey, int action, int modifiers) {
         if (isSuspendedByScreen()) {
             return false;
         }
 
-        net.minecraft.client.input.KeyEvent event = new net.minecraft.client.input.KeyEvent(key, scanCode, modifiers);
+        net.minecraft.client.input.KeyEvent event = new net.minecraft.client.input.KeyEvent(key, shortcutKey, modifiers);
         return (action == InputConstants.PRESS && keyBindings.keyPressed(event))
               || (action == InputConstants.RELEASE && keyBindings.keyReleased(event))
-              || zoom().keyPressed(key, scanCode, action, modifiers);
+              || zoom().keyPressed(key, shortcutKey, action, modifiers);
     }
 
     public boolean mouseClicked(int button, int action) {

@@ -246,7 +246,6 @@ public class AlbumViewScreen extends Screen {
     @Override
     public boolean keyPressed(net.minecraft.client.input.KeyEvent event) {
         int keyCode = event.key();
-        int scanCode = event.scancode();
         int modifiers = event.modifiers();
         return keyBindings.keyPressed(event) || super.keyPressed(event);
     }
@@ -254,7 +253,6 @@ public class AlbumViewScreen extends Screen {
     @Override
     public boolean keyReleased(net.minecraft.client.input.KeyEvent event) {
         int keyCode = event.key();
-        int scanCode = event.scancode();
         int modifiers = event.modifiers();
         return keyBindings.keyReleased(event) || super.keyReleased(event);
     }

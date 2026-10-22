@@ -169,15 +169,14 @@ public class Slider extends AbstractWidget {
     @Override
     public boolean keyPressed(net.minecraft.client.input.KeyEvent event) {
         int keyCode = event.key();
-        int scanCode = event.scancode();
         int modifiers = event.modifiers();
         if (keyCode == InputConstants.KEY_RETURN || keyCode == InputConstants.KEY_SPACE || keyCode == InputConstants.KEY_NUMPADENTER) {
             this.canChangeValue = !this.canChangeValue;
             return true;
         } else {
             if (this.canChangeValue) {
-                boolean bl = keyCode == 263;
-                if (bl || keyCode == 262) {
+                boolean bl = keyCode == InputConstants.KEY_LEFT;
+                if (bl || keyCode == InputConstants.KEY_RIGHT) {
                     float f = bl ? -1.0F : 1.0F;
                     this.setPosition(position + (double)(f / (float)(width - HANDLE_WIDTH)));
                     return true;

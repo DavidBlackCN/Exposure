@@ -20,7 +20,7 @@ class PostEffectResourcesTests {
             "purple_tint", "red_filter", "white_tint", "yellow_tint");
 
     @Test
-    void allPostEffectsUseTheMinecraft262Schema() throws Exception {
+    void allPostEffectsUseTheMinecraft263Schema() throws Exception {
         ClassLoader loader = getClass().getClassLoader();
         for (String effect : EFFECTS) {
             String path = "assets/exposure/post_effect/" + effect + ".json";

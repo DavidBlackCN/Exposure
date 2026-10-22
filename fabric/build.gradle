@@ -30,6 +30,11 @@ processResources {
 }
 
 repositories {
+    maven {
+        name = "Shedaniel"
+        url = "https://maven.shedaniel.me"
+        content { includeGroup "me.shedaniel"; includeGroup "me.shedaniel.cloth" }
+    }
     maven { url = "https://api.modrinth.com/maven" } // LazyDFU
     maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
     maven { url = "https://mvn.devos.one/snapshots/" } // Create Fabric, Forge Tags, Milk Lib, Registrate Fabric
@@ -49,8 +54,27 @@ dependencies {
 
     implementation("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}")
 
+    testImplementation(platform("org.junit:junit-bom:${jupiterVersion}"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
     compileOnlyApi("mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}")
-    runtimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
+    compileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}")
+    compileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${rei_version}")
+    // Types exposed by REI's public API; runtime copies come from REI itself.
+    compileOnly("me.shedaniel.cloth:basic-math:0.6.1")
+    compileOnly("dev.architectury:architectury-fabric:22.0.3")
+
+    def viewer = providers.gradleProperty("recipe_viewer").getOrElse("jei")
+    if (!(viewer in ["none", "jei", "rei", "both"])) {
+        throw new GradleException("recipe_viewer must be none, jei, rei, or both")
+    }
+    if (viewer in ["jei", "both"]) {
+        runtimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
+    }
+    if (viewer in ["rei", "both"]) {
+        runtimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}")
+    }
 
     // Fabric must run against Architectury's transformed common classes so that
     // @ExpectPlatform calls resolve to their Fabric implementations in dev too.
@@ -61,6 +85,11 @@ dependencies {
 shadowJar {
     configurations = [project.configurations.shadowBundle]
     archiveClassifier = 'dev-shadow'
+}
+
+tasks.named("test", Test) {
+    useJUnitPlatform()
+    systemProperty "exposure.test.resources", sourceSets.main.output.resourcesDir.absolutePath
 }
 
 jar {

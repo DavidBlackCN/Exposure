@@ -22,7 +22,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.AxeItem;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.component.BlockTransformers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +42,8 @@ public class PlatformHelperImpl {
     }
 
     public static boolean canStrip(ItemStack stack) {
-        return stack.getItem() instanceof AxeItem;
+        var transformer = stack.get(DataComponents.BLOCK_TRANSFORMER);
+        return transformer != null && transformer.is(BlockTransformers.AXE);
     }
 
     public static void openMenu(ServerPlayer serverPlayer, MenuProvider menuProvider, Consumer<RegistryFriendlyByteBuf> extraDataWriter) {

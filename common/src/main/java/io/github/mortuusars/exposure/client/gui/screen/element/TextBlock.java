@@ -1,5 +1,6 @@
 package io.github.mortuusars.exposure.client.gui.screen.element;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import io.github.mortuusars.exposure.client.gui.screen.element.textbox.HorizontalAlignment;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -82,7 +83,7 @@ public class TextBlock extends AbstractWidget {
         double mouseY = event.y();
         int button = event.button();
         Style style = getClickedComponentStyleAt(mouseX, mouseY);
-        return button == 0 && style != null && componentClickedHandler.apply(style);
+        return button == InputConstants.MOUSE_BUTTON_LEFT && style != null && componentClickedHandler.apply(style);
     }
 
     @Override
